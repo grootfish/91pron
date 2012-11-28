@@ -18,3 +18,7 @@ Robot.prototype.onScannedRobot = function(ev) {
   }
 };
 
+Robot.prototype.onWallCollision = function(ev) {
+  ev.robot.turn(45);
+};
+
