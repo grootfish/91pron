@@ -12,7 +12,7 @@ Robot.prototype.onIdle = function(ev) {
 
 Robot.prototype.onScannedRobot = function(ev) {
   var robot = ev.robot;
-  for (var i=0; i<10; i++) {
+  for (var i=0; i<5; i++) {
     robot.fire();
     robot.ahead(10);
   }
