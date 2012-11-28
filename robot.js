@@ -3,6 +3,9 @@
 //if its class is called Robot
 var Robot = function(robot){
   robot.clone();
+  if (robot.parentId == null) {
+    robot.turn(90);
+  }
 };
 
 Robot.prototype.onIdle = function(ev) {
