@@ -7,7 +7,6 @@ var Robot = function(robot){
 
 Robot.prototype.onIdle = function(ev) {
   var robot = ev.robot;
-  robot.ahead(1);
   robot.turn(1);
   robot.rotateCannon(-1);
 };
