@@ -8,7 +8,6 @@ var Robot = function(robot){
 Robot.prototype.onIdle = function(ev) {
   var robot = ev.robot;
   robot.turn(1);
-  robot.rotateCannon(-2);
 };
 
 Robot.prototype.onScannedRobot = function(ev) {
