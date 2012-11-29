@@ -19,6 +19,7 @@ Robot.prototype.onScannedRobot = function(ev) {
   }
   robot.stop();
   for (var i=0; i<10; i++) {
+    robot.turn(1);
     robot.fire();
     robot.ahead(10);
   }
