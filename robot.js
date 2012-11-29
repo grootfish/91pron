@@ -18,17 +18,19 @@ Robot.prototype.onScannedRobot = function(ev) {
       return;
   }
   robot.stop();
-  for (var i=0; i<50; i++) {
+  for (var i=0; i<10; i++) {
     robot.fire();
     robot.ahead(10);
   }
 };
 
 Robot.prototype.onWallCollision = function(ev) {
+  ev.robot.stop();
   ev.robot.turn(10);
 };
 
 Robot.prototype.onRobotCollided = function(ev) {
+  ev.robot.stop();
   this.offset = -1 * this.offset;
   ev.robot.turn(10 * this.offset);
 };
