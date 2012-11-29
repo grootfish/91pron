@@ -4,6 +4,7 @@
 var Robot = function(robot){
   robot.clone();
   robot.turn(45);
+  this.offset = 1;
 };
 
 Robot.prototype.onIdle = function(ev) {
@@ -24,4 +25,9 @@ Robot.prototype.onScannedRobot = function(ev) {
 
 Robot.prototype.onWallCollision = function(ev) {
   ev.robot.turn(45);
+};
+
+Robot.prototype.onRobotCollided = function(ev) {
+  this.offset = -1 * this.offset;
+  ev.robot.turn(45 * this.offset);
 };
