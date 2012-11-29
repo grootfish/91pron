@@ -17,7 +17,8 @@ Robot.prototype.onScannedRobot = function(ev) {
   if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
       return;
   }
-  for (var i=0; i<3; i++) {
+  robot.stop();
+  for (var i=0; i<50; i++) {
     robot.fire();
     robot.ahead(10);
   }
