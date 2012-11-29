@@ -17,17 +17,17 @@ Robot.prototype.onScannedRobot = function(ev) {
   if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
       return;
   }
-  for (var i=0; i<10; i++) {
+  for (var i=0; i<3; i++) {
     robot.fire();
     robot.ahead(10);
   }
 };
 
 Robot.prototype.onWallCollision = function(ev) {
-  ev.robot.turn(45);
+  ev.robot.turn(10);
 };
 
 Robot.prototype.onRobotCollided = function(ev) {
   this.offset = -1 * this.offset;
-  ev.robot.turn(45 * this.offset);
+  ev.robot.turn(10 * this.offset);
 };
