@@ -58,3 +58,8 @@ Robot.prototype.onRobotCollided = function(ev) {
 		ev.robot.turn(180 - ev.bearing);
   }
 };
+
+Robot.prototype.onHitByBullet = function(ev) {
+  var robot = ev.robot;
+  robot.turn(ev.bearing);
+};
