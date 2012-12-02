@@ -3,20 +3,43 @@
 //if its class is called Robot
 var Robot = function(robot){
   robot.clone();
-  robot.turn(45);
-  this.offset = 1;
+  
+  this.robotOptions = {
+    parent: {
+      direction: 1
+  	},
+    clone: {
+      direction: 1,
+      canStartFight: false
+    }
+  };
 };
 
 Robot.prototype.onIdle = function(ev) {
   var robot = ev.robot;
-  robot.turn(1);
+  if (robot.parentId == null) {
+  	robot.turn(this.robotOptions.parent.direction);
+  } else {
+    if (this.robotOptions.clone.canStartFight) {
+  		robot.turn(this.robotOptions.clone.direction);      
+    } else {
+      robot.back(100);
+      this.robotOptions.clone.canStartFight = true;
+    }
+  }
 };
 
 Robot.prototype.onScannedRobot = function(ev) {
   var robot = ev.robot, scannedRobot = ev.scannedRobot;
+  if (robot.parentId == null) {
+  	this.robotOptions.parent.direction = scannedRobot.angle > 180 ? -1 : 1;
+  } else {
+  	this.robotOptions.clone.direction = scannedRobot.angle > 180 ? -1 : 1;    
+  }
   if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
       return;
   }
+  
   robot.stop();
   for (var i=0; i<10; i++) {
     robot.fire();
@@ -31,6 +54,7 @@ Robot.prototype.onWallCollision = function(ev) {
 
 Robot.prototype.onRobotCollided = function(ev) {
   ev.robot.stop();
-  this.offset = -1 * this.offset;
-  ev.robot.turn(10 * this.offset);
+  if (ev.robot.parentId == null) {
+    ev.robot.back(50);
+  }
 };
