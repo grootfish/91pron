@@ -5,11 +5,7 @@ var Robot = function(robot){
   robot.clone();
   
   this.robotOptions = {
-    parent: {
-      direction: 1
-  	},
     clone: {
-      direction: 1,
       canStartFight: false,
       goBackOnCollision: false
     }
@@ -19,10 +15,10 @@ var Robot = function(robot){
 Robot.prototype.onIdle = function(ev) {
   var robot = ev.robot;
   if (robot.parentId == null) {
-  	robot.turn(this.robotOptions.parent.direction);
+  	robot.turn(1);
   } else {
     if (this.robotOptions.clone.canStartFight) {
-  		robot.turn(this.robotOptions.clone.direction);      
+  		robot.turn(1);      
     } else {
       robot.back(100);
       this.robotOptions.clone.canStartFight = true;
@@ -32,16 +28,11 @@ Robot.prototype.onIdle = function(ev) {
 
 Robot.prototype.onScannedRobot = function(ev) {
   var robot = ev.robot, scannedRobot = ev.scannedRobot;
-  if (robot.parentId == null) {
-  	this.robotOptions.parent.direction = scannedRobot.angle > 180 ? -1 : 1;
-  } else {
-  	this.robotOptions.clone.direction = scannedRobot.angle > 180 ? -1 : 1;    
-  }
+
   if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
       return;
   }
   
-  robot.stop();
   for (var i=0; i<10; i++) {
     robot.fire();
     robot.ahead(10);
@@ -54,6 +45,7 @@ Robot.prototype.onWallCollision = function(ev) {
 };
 
 Robot.prototype.onRobotCollided = function(ev) {
+  robot.stop();
   if (ev.robot.parentId == null) {
     ev.robot.back(20);
   } else {
@@ -63,6 +55,5 @@ Robot.prototype.onRobotCollided = function(ev) {
 
 Robot.prototype.onHitByBullet = function(ev) {
   var robot = ev.robot;
-  robot.stop();
   robot.turn(ev.bearing);
 };
