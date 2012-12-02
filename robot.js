@@ -10,7 +10,8 @@ var Robot = function(robot){
   	},
     clone: {
       direction: 1,
-      canStartFight: false
+      canStartFight: false,
+      goBackOnCollision: false
     }
   };
 };
@@ -53,9 +54,8 @@ Robot.prototype.onWallCollision = function(ev) {
 };
 
 Robot.prototype.onRobotCollided = function(ev) {
-  ev.robot.stop();
   if (ev.myFault) {
-		ev.robot.back(100);
+		ev.robot.back(1);
   }
 };
 
