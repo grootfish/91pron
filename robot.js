@@ -55,6 +55,6 @@ Robot.prototype.onWallCollision = function(ev) {
 Robot.prototype.onRobotCollided = function(ev) {
   ev.robot.stop();
   if (ev.robot.parentId == null) {
-    ev.robot.back(50);
+		ev.robot.turn(180 - ev.bearing);
   }
 };
