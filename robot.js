@@ -54,8 +54,10 @@ Robot.prototype.onWallCollision = function(ev) {
 };
 
 Robot.prototype.onRobotCollided = function(ev) {
-  if (ev.myFault) {
-		ev.robot.back(1);
+  if (ev.robot.parentId == null) {
+    ev.robot.back(20);
+  } else {
+    ev.robot.ahead(20);
   }
 };
 
