@@ -2,7 +2,7 @@
 //FightCode can only understand your robot
 //if its class is called Robot
 var Robot = function(robot){
-  robot.clone();
+  //robot.clone();
   
   this.robotOptions = {
     clone: {
