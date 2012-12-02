@@ -27,25 +27,24 @@ Robot.prototype.onIdle = function(ev) {
 };
 
 Robot.prototype.onScannedRobot = function(ev) {
-  var robot = ev.robot, scannedRobot = ev.scannedRobot;
+  var robot = ev.robot, 
+      scannedRobot = ev.scannedRobot;
 
   if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
       return;
   }
   
-  for (var i=0; i<10; i++) {
+  for (var i=0; i<5; i++) {
     robot.fire();
     robot.ahead(10);
   }
 };
 
 Robot.prototype.onWallCollision = function(ev) {
-  ev.robot.stop();
   ev.robot.turn(10);
 };
 
 Robot.prototype.onRobotCollided = function(ev) {
-  robot.stop();
   if (ev.robot.parentId == null) {
     ev.robot.back(20);
   } else {
@@ -54,6 +53,5 @@ Robot.prototype.onRobotCollided = function(ev) {
 };
 
 Robot.prototype.onHitByBullet = function(ev) {
-  var robot = ev.robot;
-  robot.turn(ev.bearing);
+  ev.robot.turn(ev.bearing);
 };
