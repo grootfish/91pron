@@ -61,5 +61,6 @@ Robot.prototype.onRobotCollided = function(ev) {
 
 Robot.prototype.onHitByBullet = function(ev) {
   var robot = ev.robot;
+  robot.stop();
   robot.turn(ev.bearing);
 };
