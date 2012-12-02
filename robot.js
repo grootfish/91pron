@@ -30,9 +30,9 @@ Robot.prototype.onScannedRobot = function(ev) {
   var robot = ev.robot, 
       scannedRobot = ev.scannedRobot;
 
-  if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
-      return;
-  }
+  //if (robot.id == scannedRobot.parentId || robot.parentId == scannedRobot.id) {
+      //return;
+  //}
   
   for (var i=0; i<5; i++) {
     robot.fire();
